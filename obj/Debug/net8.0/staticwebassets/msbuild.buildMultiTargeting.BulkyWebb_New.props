@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/BulkyWebb_New.props" />
+</Project>
