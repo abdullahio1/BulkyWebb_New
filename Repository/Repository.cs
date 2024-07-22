@@ -1,12 +1,10 @@
-using System:
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using BulkyWebb_New.Repository.IRepository;
+using System.Linq.Expressions;
+using BulkyWebb_New.Data;
+using Microsoft.EntityFrameworkCore;
 
-namespace  BulkyWebb_New.Repository
+
+namespace BulkyWebb_New.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
