@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BulkyWebb_New")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f0947de2c7631b25deddbddb39d29be0669487b0")]
 [assembly: System.Reflection.AssemblyProductAttribute("BulkyWebb_New")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BulkyWebb_New")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
