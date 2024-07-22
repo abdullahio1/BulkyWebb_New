@@ -103,3 +103,4 @@
 /Users/abdullaseed/Desktop/Jobb/CIFER/Trainee Courses/BulkyWeb__New/BulkyWebb_New/bin/Debug/net8.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.resources.dll
 /Users/abdullaseed/Desktop/Jobb/CIFER/Trainee Courses/BulkyWeb__New/BulkyWebb_New/bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll
 /Users/abdullaseed/Desktop/Jobb/CIFER/Trainee Courses/BulkyWeb__New/BulkyWebb_New/obj/Debug/net8.0/BulkyWeb.69197EE6.Up2Date
+/Users/abdullaseed/Desktop/Jobb/CIFER/Trainee Courses/BulkyWeb__New/BulkyWebb_New/obj/Debug/net8.0/BulkyWebb_New.sourcelink.json
