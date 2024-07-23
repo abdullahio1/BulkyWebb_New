@@ -1,25 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "/Users/abdullaseed/Desktop/Jobb/CIFER/Trainee Courses/BulkyWeb__New/BulkyWebb_New/BulkyWebb_New.csproj": {}
+    "C:\\repos\\BulkyWebb_New\\BulkyWebb_New.csproj": {}
   },
   "projects": {
-    "/Users/abdullaseed/Desktop/Jobb/CIFER/Trainee Courses/BulkyWeb__New/BulkyWebb_New/BulkyWebb_New.csproj": {
+    "C:\\repos\\BulkyWebb_New\\BulkyWebb_New.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/abdullaseed/Desktop/Jobb/CIFER/Trainee Courses/BulkyWeb__New/BulkyWebb_New/BulkyWebb_New.csproj",
+        "projectUniqueName": "C:\\repos\\BulkyWebb_New\\BulkyWebb_New.csproj",
         "projectName": "BulkyWebb_New",
-        "projectPath": "/Users/abdullaseed/Desktop/Jobb/CIFER/Trainee Courses/BulkyWeb__New/BulkyWebb_New/BulkyWebb_New.csproj",
-        "packagesPath": "/Users/abdullaseed/.nuget/packages/",
-        "outputPath": "/Users/abdullaseed/Desktop/Jobb/CIFER/Trainee Courses/BulkyWeb__New/BulkyWebb_New/obj/",
+        "projectPath": "C:\\repos\\BulkyWebb_New\\BulkyWebb_New.csproj",
+        "packagesPath": "C:\\Users\\nnoah\\.nuget\\packages\\",
+        "outputPath": "C:\\repos\\BulkyWebb_New\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/abdullaseed/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\nnoah\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -60,6 +67,10 @@
             "System.ComponentModel.Annotations": {
               "target": "Package",
               "version": "[5.0.0, )"
+            },
+            "System.Linq.Expressions": {
+              "target": "Package",
+              "version": "[4.3.0, )"
             }
           },
           "imports": [
@@ -81,7 +92,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

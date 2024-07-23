@@ -1,11 +1,6 @@
 using BulkyWebb_New.Models;
 using BulkyWebb_New.Repository.IRepository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BulkyWebb_New.Repository;
 
