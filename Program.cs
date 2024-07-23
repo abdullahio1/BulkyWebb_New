@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using BulkyWebb_New.Data;
+using BulkyWebb_New.Repository.IRepository;
+using BulkyWebb_New.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
