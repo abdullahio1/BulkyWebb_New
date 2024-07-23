@@ -1,104 +1,310 @@
 using Microsoft.AspNetCore.Mvc;
 using BulkyWebb_New.Models;
-using BulkyWebb_New.Data;
+using BulkyWebb_New.Repository.IRepository;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace BulkyWebb_New.Controllers
 {
-public class CategoryController : Controller
-  {
-    private readonly ICategoryRepository _categoryRepo;
-    public CategoryController(ICategoryRepository db)
+    public class CategoryController : Controller
     {
-        _categoryRepo = db;
-    }
-    public IActionResult Index()
-    {
-        List<Category> objCategoryList = _categoryRepo.GetAll().ToList();
-        return View(objCategoryList);
-    }
+        private readonly ICategoryRepository _categoryRepo;
 
-    public IActionResult Create()
-    {
-        return View();
-    }
-    [HttpPost]
-    public IActionResult Create(Category obj)
-    {
-        if(obj.Name == obj.DisplayOrder.ToString())
+        public CategoryController(ICategoryRepository categoryRepo)
         {
-            ModelState.AddModelError("Name","The DisplayOrder cannot exactly match the Name."); // NOT WORKING also All not working
+            _categoryRepo = categoryRepo;
         }
-        if (ModelState.IsValid)
+
+        public IActionResult Index()
         {
-            _categoryRepo.Add(obj);
-            _categoryRepo.Save();
-            TempData["Success"] = "Category created successfully";
-            return RedirectToAction("Index");
+            List<Category> objCategoryList = _categoryRepo.GetAll().ToList();
+            return View(objCategoryList);
         }
-           return View();
-    }
-     public IActionResult Edit(int? id)
-    {
-        if(id==null || id == 0){
-            return NotFound();
-        }
-         Category? categoryFromDb = _categoryRepo.Get(u=>u.id==id);
-        // Category? categoryFromDb = _db.Categories.Find(id);
-        // Category? categoryFromDb1 = _db.Categories.FirstOrDefault(u=>u.Id==id);
-        // Category? categoryFromDb2 = _db.Categories.Where(u=>u.Id==id).FirstOrDefault();
-        if(categoryFromDb == null)
+
+        public IActionResult Create()
         {
-            return NotFound();
+            return View();
         }
-        return View(categoryFromDb);
-    }
-    [HttpPost]
-     public IActionResult Edit(Category obj)
-    {
-    
-        if (ModelState.IsValid)
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Category obj)
         {
-           _categoryRepo.Update(obj);
-            _categoryRepo.Save(); 
-            TempData["Success"] = "Category updated successfully";
-            return RedirectToAction("Index");
+            if (obj.Name == obj.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("Name", "The DisplayOrder cannot exactly match the Name.");
+            }
+
+            if (ModelState.IsValid)
+            {
+                _categoryRepo.Add(obj);
+                _categoryRepo.Save();
+                TempData["Success"] = "Category created successfully";
+                return RedirectToAction("Index");
+            }
+
+            return View();
         }
-           return View(obj);
-    }
-     public IActionResult Delete(int? id)
-    {
-        if(id==null || id == 0){
-            return NotFound();
-        }
-        Category? categoryFromDb = _categoryRepo.Get(u=>u.id==id);
-        // Category? categoryFromDb = _db.Categories.Find(id);
-        // Category? categoryFromDb1 = _db.Categories.FirstOrDefault(u=>u.Id==id);
-        // Category? categoryFromDb2 = _db.Categories.Where(u=>u.Id==id).FirstOrDefault();
-        if(categoryFromDb == null)
+
+        public IActionResult Edit(int? id)
         {
-            return NotFound();
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            Category categoryFromDb = _categoryRepo.Get(c => c.Id == id);
+            if (categoryFromDb == null)
+            {
+                return NotFound();
+            }
+
+            return View(categoryFromDb);
         }
-        return View(categoryFromDb);
-    }
-    [HttpPost, ActionName("Delete")]
-     public IActionResult DeletePost(int? id)
-    {
-        // Category? obj = _db.Categories.Find(id);
-         Category? categoryFromDb = _categoryRepo.Get(u=>u.id==id);
-        if(obj == null)
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Category obj)
         {
-            return NotFound();
+            if (ModelState.IsValid)
+            {
+                _categoryRepo.Update(obj);
+                _categoryRepo.Save();
+                TempData["Success"] = "Category updated successfully";
+                return RedirectToAction("Index");
+            }
+
+            return View();
         }
-        _db.Categories.Remove(obj);
-        _db.SaveChanges();
-        TempData["Success"] = "Category Deleted successfully";
-        return RedirectToAction("Index");
-        if (ModelState.IsValid)
+
+        public IActionResult Delete(int? id)
         {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            Category categoryFromDb = _categoryRepo.Get(c => c.Id == id);
+            if (categoryFromDb == null)
+            {
+                return NotFound();
+            }
+
+            return View(categoryFromDb);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeletePost(int? id)
+        {
+            Category obj = _categoryRepo.Get(c => c.Id == id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
             _categoryRepo.Remove(obj);
-            _categoryRepo.Save(); 
+            _categoryRepo.Save();
+            TempData["Success"] = "Category deleted successfully";
             return RedirectToAction("Index");
         }
     }
+}
+
+// namespace BulkyWebb_New.Controllers
+// {
+//      public class CategoryController : Controller
+//     {
+//         private readonly ICategoryRepository _categoryRepo;
+
+//         public CategoryController(ICategoryRepository categoryRepo)
+//         {
+//             _categoryRepo = categoryRepo;
+//         }
+
+//         public IActionResult Index()
+//         {
+//             List<Category> objCategoryList = _categoryRepo.GetAll().ToList();
+//             return View(objCategoryList);
+//         }
+
+//         public IActionResult Create()
+//         {
+//             return View();
+//         }
+
+//         [HttpPost]
+//         [ValidateAntiForgeryToken]
+//         public IActionResult Create(Category obj)
+//         {
+//             if (obj.Name == obj.DisplayOrder.ToString())
+//             {
+//                 ModelState.AddModelError("Name", "The DisplayOrder cannot exactly match the Name.");
+//             }
+
+//             if (ModelState.IsValid)
+//             {
+//                 _categoryRepo.Add(obj);
+//                 _categoryRepo.Save();
+//                 TempData["Success"] = "Category created successfully";
+//                 return RedirectToAction("Index");
+//             }
+
+//             return View();
+//         }
+
+//         public IActionResult Edit(int? id)
+//         {
+//             if (id == null || id == 0)
+//             {
+//                 return NotFound();
+//             }
+
+//             Category categoryFromDb = _categoryRepo.Get(c => c.Id == id);
+//             if (categoryFromDb == null)
+//             {
+//                 return NotFound();
+//             }
+
+//             return View(categoryFromDb);
+//         }
+
+//         [HttpPost]
+//         [ValidateAntiForgeryToken]
+//         public IActionResult Edit(Category obj)
+//         {
+//             if (ModelState.IsValid)
+//             {
+//                 _categoryRepo.Update(obj);
+//                 _categoryRepo.Save();
+//                 TempData["Success"] = "Category updated successfully";
+//                 return RedirectToAction("Index");
+//             }
+
+//             return View();
+//         }
+
+//         public IActionResult Delete(int? id)
+//         {
+//             if (id == null || id == 0)
+//             {
+//                 return NotFound();
+//             }
+
+//             Category categoryFromDb = _categoryRepo.Get(c => c.Id == id);
+//             if (categoryFromDb == null)
+//             {
+//                 return NotFound();
+//             }
+
+//             return View(categoryFromDb);
+//         }
+
+//         [HttpPost, ActionName("Delete")]
+//         [ValidateAntiForgeryToken]
+//         public IActionResult DeletePost(int? id)
+//         {
+//             Category obj = _categoryRepo.Get(c => c.Id == id);
+//             if (obj == null)
+//             {
+//                 return NotFound();
+//             }
+
+//             _categoryRepo.Remove(obj);
+//             _categoryRepo.Save();
+//             TempData["Success"] = "Category deleted successfully";
+//             return RedirectToAction("Index");
+//         }
+//     }
+// public class CategoryController : Controller
+//   {
+//     private readonly ICategoryRepository _categoryRepo;
+//    internal CategoryController(ICategoryRepository db)
+//     {
+//         _categoryRepo = db;
+//     }
+//     public IActionResult Index()
+//     {
+//         List<Category> objCategoryList = _categoryRepo.GetAll().ToList();
+//         return View(objCategoryList);
+//     }
+
+//     public IActionResult Create()
+//     {
+//         return View();
+//     }
+//     [HttpPost]
+//     public IActionResult Create(Category obj)
+//     {
+//         if(obj.Name == obj.DisplayOrder.ToString())
+//         {
+//             ModelState.AddModelError("Name","The DisplayOrder cannot exactly match the Name."); // NOT WORKING also All not working
+//         }
+//         if (ModelState.IsValid)
+//         {
+//             _categoryRepo.Add(obj);
+//             _categoryRepo.Save();
+//             TempData["Success"] = "Category created successfully";
+//             return RedirectToAction("Index");
+//         }
+//            return View();
+//     }
+//      public IActionResult Edit(int? id)
+//     {
+//         if(id==null || id == 0){
+//             return NotFound();
+//         }
+//      Category? categoryFromDb = _categoryRepo.Get(u => u.Id == id);
+//         // Category? categoryFromDb = _db.Categories.Find(id);
+//         // Category? categoryFromDb1 = _db.Categories.FirstOrDefault(u=>u.Id==id);
+//         // Category? categoryFromDb2 = _db.Categories.Where(u=>u.Id==id).FirstOrDefault();
+//         if(categoryFromDb == null)
+//         {
+//             return NotFound();
+//         }
+//         return View(categoryFromDb);
+//     }
+//     [HttpPost]
+//      public IActionResult Edit(Category obj)
+//     {
+    
+//         if (ModelState.IsValid)
+//         {
+//            _categoryRepo.Update(obj);
+//             _categoryRepo.Save(); 
+//             TempData["Success"] = "Category updated successfully";
+//             return RedirectToAction("Index");
+//         }
+//            return View();
+//     }
+//      public IActionResult Delete(int? id)
+//     {
+//         if(id==null || id == 0){
+//             return NotFound();
+//         }
+//         Category? categoryFromDb = _categoryRepo.Get(u=>u.Id==id);
+//         // Category? categoryFromDb = _db.Categories.Find(id);
+//         // Category? categoryFromDb1 = _db.Categories.FirstOrDefault(u=>u.Id==id);
+//         // Category? categoryFromDb2 = _db.Categories.Where(u=>u.Id==id).FirstOrDefault();
+//         if(categoryFromDb == null)
+//         {
+//             return NotFound();
+//         }
+//         return View(categoryFromDb);
+//     }
+//     [HttpPost, ActionName("Delete")]
+//      public IActionResult DeletePost(int? id)
+//     {
+//             // Category? obj = _db.Categories.Find(id);
+//             Category? obj = _categoryRepo.Get(u => u.Id == id);
+//         if(obj == null)
+//         {
+//             return NotFound();
+//         }
+//         _categoryRepo.Remove(obj);
+//         _categoryRepo.Save();
+//         TempData["Success"] = "Category Deleted successfully";
+//         return RedirectToAction("Index");
+//     }
    
-}
-}
+// }

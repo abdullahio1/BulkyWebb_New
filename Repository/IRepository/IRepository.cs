@@ -1,4 +1,4 @@
-using System:
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -11,7 +11,7 @@ namespace BulkyWebb_New.Repository.IRepository
     {
         // T _ Category
         IEnumerable<T> GetAll();
-        T Get(Expresion<Func<T, bool>> filter);
+        T Get(Expression<Func<T, bool>> filter);
         void Add(T entity);
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entity);
