@@ -1,0 +1,9 @@
+# Ignore build output directories
+bin/
+obj/
+
+# Ignore other temporary files
+*.dll
+*.pdb
+*.cache
+*.json
