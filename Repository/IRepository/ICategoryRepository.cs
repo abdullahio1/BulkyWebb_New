@@ -7,11 +7,10 @@ namespace BulkyWebb_New.Repository.IRepository
     public interface ICategoryRepository
     {
         IEnumerable<Category> GetAll();
-        Category Get(Func<Category, bool> predicate);  // Ensure this matches your requirement
+        Category Get(Func<Category, bool> predicate);  
         void Add(Category category);
         void Update(Category category);
-        void Remove(Category category);  // Ensure this matches your requirement
-        void Save();
+        void Remove(Category category);  
     }
 }
 

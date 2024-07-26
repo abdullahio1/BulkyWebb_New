@@ -10,7 +10,6 @@ namespace BulkyWebb_New.Repository
     public class CategoryRepository : ICategoryRepository
     {
         private readonly ApplicationDbContext _db;
-
         public CategoryRepository(ApplicationDbContext db)
         {
             _db = db;
@@ -23,35 +22,67 @@ namespace BulkyWebb_New.Repository
 
         public Category Get(Func<Category, bool> predicate)
         {
-#pragma warning disable CS8603 // Possible null reference return.
             return _db.Categories.FirstOrDefault(predicate);
-#pragma warning restore CS8603 // Possible null reference return.
         }
 
         public void Add(Category category)
         {
             _db.Categories.Add(category);
-            Save();
         }
 
         public void Update(Category category)
         {
             _db.Categories.Update(category);
-            Save();
         }
 
         public void Remove(Category category)
         {
             _db.Categories.Remove(category);
-            Save();
         }
 
-        public void Save()
-        {
-            _db.SaveChanges();
-        }
     }
 }
+// namespace BulkyWebb_New.Repository
+// {
+//     public class CategoryRepository : ICategoryRepository
+//     {
+//         private ApplicationDbContext _db;
+
+//         public CategoryRepository(ApplicationDbContext db)
+//         {
+//             _db = db;
+//         }
+
+//         public IEnumerable<Category> GetAll()
+//         {
+//             return _db.Categories.ToList();
+//         }
+
+//         public Category Get(Func<Category, bool> predicate)
+//         {
+//             return _db.Categories.FirstOrDefault(predicate);
+//         }
+
+//         public void Add(Category category)
+//         {
+//             _db.Categories.Add(category);
+//         }
+
+
+//         public void Update(Category category)
+//         {
+//             _db.Categories.Update(category);
+
+//         }
+
+//         public void Remove(Category category)
+//         {
+//             _db.Categories.Remove(category);
+
+//         }
+
+//     }
+// }
 
 
 
