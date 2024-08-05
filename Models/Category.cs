@@ -13,5 +13,6 @@ namespace BulkyWebb_New.Models
         [DisplayName("Display Order")]
         [Range(1, 100)]
         public int DisplayOrder { get; set; }
+
     }
 }
