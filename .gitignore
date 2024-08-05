@@ -1,6 +1,6 @@
 # Ignore build output directories
-bin/
-obj/
+#bin/
+#obj/
 
 # Ignore other temporary files
 *.dll
