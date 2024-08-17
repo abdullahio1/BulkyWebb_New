@@ -36,16 +36,11 @@
     </div>
     <div class="card-body p-4">
         <form method="post" class="row" enctype="multipart/form-data">
-        <input asp-for="Product.Id" hidden />
+        <input asp-for="@Model.Product.Id" hidden />
+        <input asp-for="@Model.Product.ImageUrl" hidden/>
         <div class="row">
             <div class="col-10">
-                
-            </div>
-            <div class="col-2">
-
-            </div>
-        </div>
-            <div class="border p-3">
+                <div class="border p-3">
                 @*<div asp-validation-summary="ModelOnly"></div>*@
                 <div class="form-floating py-2 col-12">
                     <input asp-for="Product.Title" class="form-control" border-0 shadow"/>
@@ -90,8 +85,8 @@
 
 
                   <div class="form-floating py-2 col-12">
-                    <select asp-for="@Model.Product.CategoryId" asp-items="@Model.CategoryList" class="form-select border-0 shadow"> 
-                        <option disabled selected> --Select Category--</option>
+                        <select asp-for="@Model.Product.CategoryId" asp-items="@Model.CategoryList" class="form-select">
+                    <option disabled selected> --Select Category--</option>
                     </select>
                     <label asp-for="Product.CategoryId" class="ms-2"></label>
                     <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
@@ -118,11 +113,14 @@
                         <a asp-controller="Product" asp-action="Index" class="btn btn-outline-primary border">Back to List</a>
                     </div>
                 </div>
-
-                </div>
-           </form>
-
+                
+            </div>
+            <div class="col-2">
+                <img src="@Model.Product.ImageUrl" width="100%"
+                 style="border-radius:5px; border:1px solid #bbb9b9"/>
+            </div>
         </div>
+           </form>
     </div>
 </div>
 @section Scripts {

@@ -10,6 +10,7 @@ namespace BulkyWebb_New.Repository.IRepository
         Product Get(Func<Product, bool> predicate);  
         void Add(Product product);
         void Update(Product product);
-        void Remove(Product product);  
+        void Remove(Product product);
+        object GetAll(string includeProperties);
     }
 }

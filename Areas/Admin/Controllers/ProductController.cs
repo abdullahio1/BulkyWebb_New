@@ -28,7 +28,7 @@ namespace BulkyWebb_New.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            List<Product> objProductList = _unitOfWork.Product.GetAll().ToList();
+            List<Product> objProductList = _unitOfWork.Product.GetAll(includeProperties:"Category").ToList();
             return View(objProductList);
         }
 
@@ -68,6 +68,17 @@ namespace BulkyWebb_New.Areas.Admin.Controllers
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.Name);
                     string productPath = Path.Combine(wwwRootPath, @"images/product");
 
+                    if(!string.IsNullOrEmpty(productVM.Product.ImageUrl))
+                    {
+                        // delete the old image
+                        var oldImagePath = 
+                        Path.Combine(wwwRootPath, productVM.Product.ImageUrl.TrimStart('/'));
+                        if(System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }
+
                     // save file
                     using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
                     {
@@ -75,6 +86,16 @@ namespace BulkyWebb_New.Areas.Admin.Controllers
                     }
 
                     productVM.Product.ImageUrl = @"/images/product/" + fileName;
+                }
+                if (productVM.Product.Id == 0)
+                {
+                    // Create
+                    _unitOfWork.Product.Add(productVM.Product);
+                }
+                else
+                {
+                    // Edit
+                    _unitOfWork.Product.Update(productVM.Product);
                 }
                 _unitOfWork.Product.Add(productVM.Product);
                 _unitOfWork.Save();
