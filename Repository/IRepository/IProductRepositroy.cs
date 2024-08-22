@@ -4,13 +4,11 @@ using System.Collections.Generic;
 
 namespace BulkyWebb_New.Repository.IRepository
 {
-    public interface IProductRepository
+    public interface IProductRepository : IRepository<Product>
     {
-        IEnumerable<Product> GetAll();
         Product Get(Func<Product, bool> predicate);  
         void Add(Product product);
         void Update(Product product);
         void Remove(Product product);
-        object GetAll(string includeProperties);
     }
 }

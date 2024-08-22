@@ -41,35 +41,6 @@ namespace BulkyWebb_New.Repository
             }
             
         }
-     public IEnumerable<Product> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        // public IEnumerable<Category> GetAll()
-        // {
-        //     return _db.Categories.ToList();
-        // }
-
-        // public Category Get(Func<Category, bool> predicate)
-        // {
-        //     return _db.Categories.FirstOrDefault(predicate);
-        // }
-
-        // public void Add(Category category)
-        // {
-        //     _db.Categories.Add(category);
-        // }
-
-        // public void Update(Category category)
-        // {
-        //     _db.Categories.Update(category);
-        // }
-
-        // public void Remove(Category category)
-        // {
-        //     _db.Categories.Remove(category);
-        // }
-
+     
     }
 }

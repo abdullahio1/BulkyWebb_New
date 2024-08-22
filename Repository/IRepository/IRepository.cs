@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BulkyWebb_New.Repository.IRepository
 {
-    internal interface IRepository<T> where T : class
+    public interface IRepository<T> where T : class
     {
         // T _ Category
         IEnumerable<T> GetAll(string? IncludeProperties = null);
